@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tdw.swagger2.dao.master.TbAccountDao">
+	<resultMap id="BaseResultMap" type="com.tdw.swagger2.model.TbAccount">
+		<result column="account_id" property="accountId" />
+		<result column="account_no" property="accountNo" />
+		<result column="account_type" property="accountType" />
+		<result column="account_name" property="accountName" />
+		<result column="main_id" property="mainId" />
+		<result column="main_type" property="mainType" />
+		<result column="business_from" property="businessFrom" />
+		<result column="branch_id" property="branchId" />
+		<result column="account_amount" property="accountAmount" />
+		<result column="frozen_amount" property="frozenAmount" />
+		<result column="status_flag" property="statusFlag" />
+		<result column="frozen_flag" property="frozenFlag" />
+		<result column="create_user" property="createUser" />
+		<result column="create_time" property="createTime" />
+		<result column="update_user" property="updateUser" />
+		<result column="update_time" property="updateTime" />
+		<result column="remark" property="remark" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		account_id,
+		account_no,
+		account_type,
+		account_name,
+		main_id,
+		main_type,
+		business_from,
+		branch_id,
+		account_amount,
+		frozen_amount,
+		status_flag,
+		frozen_flag,
+		create_user,
+		create_time,
+		update_user,
+		update_time,
+		remark
+	</sql>
+	<parameterMap id="TbAccount" type="com.tdw.swagger2.model.TbAccount"/>
+
+	<select id="findByAccountId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM tb_account
+		WHERE account_id = #{accountId}
+	</select>
+
+	<select id="findAll" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM tb_account
+	</select>
+
+	<insert id="insertAccount" parameterMap="TbAccount" keyProperty="accountId">
+		INSERT INTO
+		tb_account (
+		account_id,
+		account_no,
+		account_type,
+		account_name,
+		main_id,
+		main_type,
+		business_from,
+		branch_id,
+		account_amount,
+		frozen_amount,
+		status_flag,
+		frozen_flag,
+		create_user,
+		create_time,
+		update_user,
+		update_time,
+		remark )
+		values
+		(
+		#{accountId},
+		#{accountNo},
+		#{accountType},
+		#{accountName},
+		#{mainId},
+		#{mainType},
+		#{businessFrom},
+		#{branchId},
+		#{accountAmount},
+		#{frozenAmount},
+		#{statusFlag},
+		#{frozenFlag},
+		#{createUser},
+		#{createTime},
+		#{updateUser},
+		#{updateTime},
+		#{remark} )
+	</insert>
+
+	<update id="updateAccount" parameterMap="TbAccount">
+		update
+		tb_account
+		set
+		<if test="accountNo !=null">
+			account_no= #{accountNo},
+		</if>
+		<if test="accountType !=null">
+			account_type= #{accountType},
+		</if>
+		<if test="accountName !=null">
+			account_name= #{accountName},
+		</if>
+		<if test="mainId !=null">
+			main_id= #{mainId},
+		</if>
+		<if test="mainType !=null">
+			main_type= #{mainType},
+		</if>
+		<if test="businessFrom !=null">
+			business_from= #{businessFrom},
+		</if>
+		<if test="branchId !=null">
+			branch_id= #{branchId},
+		</if>
+		<if test="accountAmount !=null">
+			account_amount= #{accountAmount},
+		</if>
+		<if test="frozenAmount !=null">
+			frozen_amount= #{frozenAmount},
+		</if>
+		<if test="statusFlag !=null">
+			status_flag= #{statusFlag},
+		</if>
+		<if test="frozenFlag !=null">
+			frozen_flag= #{frozenFlag},
+		</if>
+		<if test="createUser !=null">
+			create_user= #{createUser},
+		</if>
+		<if test="createTime !=null">
+			create_time= #{createTime},
+		</if>
+		<if test="updateUser !=null">
+			update_user= #{updateUser},
+		</if>
+		<if test="updateTime !=null">
+			update_time= #{updateTime},
+		</if>
+		<if test="remark !=null">
+			remark= #{remark}
+		</if>
+		where
+		account_id = #{accountId}
+	</update>
+
+	<delete id="deleteAccount" parameterType="java.lang.String">
+		DELETE FROM tb_account WHERE account_id = #{accountId}
+	</delete>
+</mapper>
