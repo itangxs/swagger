@@ -30,7 +30,7 @@ public class TbAccountController {
 
     @ApiOperation(value = "根据ID查询账户基本信息")
     @ApiImplicitParam(paramType="path",name="accountId",dataType="String",required=true,value="账户编号")
-    @RequestMapping(value = "/api/account/{accountId}",method = RequestMethod.GET)
+    @GetMapping(value = "/api/account/{accountId}")
     public Object getAccount(@PathVariable(name = "accountId") String accountId){
         logger.info(">>账户查询接口:" +accountId);
         ResultMessage resultMessage = new ResultMessage(ErrorCode.ACCOUNT_SERVICE_OK);
@@ -45,7 +45,7 @@ public class TbAccountController {
     }
 
     @ApiOperation(value = "查询所有账户基本信息")
-    @RequestMapping(value = "/api/account",method = RequestMethod.GET)
+    @GetMapping(value = "/api/account")
     public Object getAllAccount(){
         logger.info(">>查询所有账户" );
         ResultMessage resultMessage = new ResultMessage(ErrorCode.ACCOUNT_SERVICE_OK);
@@ -62,7 +62,7 @@ public class TbAccountController {
 
     @ApiOperation("删除账户")
     @ApiImplicitParam(paramType="path",name="accountId",dataType="String",required=true,value="账户编号")
-    @RequestMapping(value = "/api/account/{accountId}",method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/api/account/{accountId}")
     public Object delAccount(@PathVariable(name = "accountId") String accountId){
         logger.info(">>账户删除接口:" +accountId);
         ResultMessage resultMessage = new ResultMessage(ErrorCode.ACCOUNT_SERVICE_OK);
@@ -78,7 +78,7 @@ public class TbAccountController {
 
 
     @ApiOperation("新增账户")
-    @RequestMapping(value = "/api/account",method = RequestMethod.POST)
+    @PostMapping(value = "/api/account")
     public Object addAccount(@RequestBody TbAccount account){
         ResultMessage resultMessage = new ResultMessage(ErrorCode.ACCOUNT_SERVICE_OK);
         Boolean flag;
@@ -100,7 +100,7 @@ public class TbAccountController {
     }
 
     @ApiOperation("更新账户")
-    @RequestMapping(value = "/api/account",method = RequestMethod.PUT)
+    @PutMapping(value = "/api/account")
     public Object updateAccount(@RequestBody TbAccount account){
         ResultMessage resultMessage = new ResultMessage(ErrorCode.ACCOUNT_SERVICE_OK);
         Boolean flag;
