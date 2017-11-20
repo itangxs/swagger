@@ -10,10 +10,32 @@ Target Server Type    : MYSQL
 Target Server Version : 50638
 File Encoding         : 65001
 
-Date: 2017-11-20 09:00:38
+Date: 2017-11-20 09:41:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for log4net
+-- ----------------------------
+DROP TABLE IF EXISTS `log4net`;
+CREATE TABLE `log4net` (
+  `log_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '日志编号',
+  `log_level` varchar(50) DEFAULT NULL COMMENT '日志等级',
+  `logger` varchar(255) DEFAULT NULL COMMENT '日志收集人',
+  `log_host` varchar(50) DEFAULT NULL COMMENT '日志主机',
+  `log_date` datetime DEFAULT NULL COMMENT '日志日期',
+  `log_thread` varchar(255) DEFAULT NULL COMMENT '日志线程',
+  `log_message` text COMMENT '日志消息',
+  `log_exception` text COMMENT '日志异常',
+  `log_status` int(11) DEFAULT NULL COMMENT '日志状态(空为未解决, 0为解决中, 1为已解决)',
+  PRIMARY KEY (`log_id`),
+  KEY `idx_log4net_time` (`log_date`)
+) ENGINE=InnoDB AUTO_INCREMENT=10196 DEFAULT CHARSET=utf8 COMMENT='log4net错误日志表';
+
+-- ----------------------------
+-- Records of log4net
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_account
